@@ -1,12 +1,26 @@
 import React from "react";
 import { Link } from "wouter";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
 import { useGetDashboardStats } from "@workspace/api-client-react";
-import { User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox } from "lucide-react";
+
+function useUnreadMessages() {
+  return useQuery({
+    queryKey: ["unread-count"],
+    queryFn: async () => {
+      const res = await fetch("/api/contact/messages/unread-count");
+      if (!res.ok) return { unreadCount: 0, totalCount: 0 };
+      return res.json() as Promise<{ unreadCount: number; totalCount: number }>;
+    },
+  });
+}
 
 export default function Home() {
   const { data: stats, isLoading } = useGetDashboardStats();
+  const { data: msgData } = useUnreadMessages();
 
   const statCards = [
     { name: "Skills", count: stats?.skillsCount, icon: Wrench, href: "/skills" },
@@ -44,6 +58,31 @@ export default function Home() {
             </CardContent>
           </Card>
         </Link>
+
+        <Link href="/messages" className="block focus:outline-none focus:ring-2 focus:ring-ring rounded-xl">
+          <Card className={`hover-elevate cursor-pointer transition-colors h-full ${msgData?.unreadCount ? "border-primary/40 bg-primary/5" : "hover:border-primary/50"}`}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
+                Inbox
+                {msgData?.unreadCount ? (
+                  <Badge variant="default" className="text-xs px-1.5 py-0">
+                    {msgData.unreadCount} new
+                  </Badge>
+                ) : null}
+              </CardTitle>
+              <Inbox className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {msgData?.totalCount ?? 0} messages
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Contact form submissions
+              </p>
+            </CardContent>
+          </Card>
+        </Link>
+
         <Link href="/contact" className="block focus:outline-none focus:ring-2 focus:ring-ring rounded-xl">
           <Card className="hover-elevate cursor-pointer transition-colors hover:border-primary/50 h-full">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -61,7 +100,7 @@ export default function Home() {
       </div>
 
       <h2 className="text-xl font-semibold tracking-tight mt-8 mb-4">Content Sections</h2>
-      
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {statCards.map((card) => (
           <Link key={card.name} href={card.href} className="block focus:outline-none focus:ring-2 focus:ring-ring rounded-xl">

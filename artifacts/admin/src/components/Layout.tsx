@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact } from "lucide-react";
+import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 
-const navigation = [
+const baseNav = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Profile", href: "/profile", icon: User },
   { name: "Skills", href: "/skills", icon: Wrench },
@@ -12,10 +13,25 @@ const navigation = [
   { name: "Interests", href: "/interests", icon: Heart },
   { name: "Goals", href: "/goals", icon: Target },
   { name: "Contact", href: "/contact", icon: Contact },
+  { name: "Messages", href: "/messages", icon: Inbox },
 ];
+
+function useUnreadCount() {
+  const { data } = useQuery({
+    queryKey: ["unread-count"],
+    queryFn: async () => {
+      const res = await fetch("/api/contact/messages/unread-count");
+      if (!res.ok) return { unreadCount: 0 };
+      return res.json() as Promise<{ unreadCount: number }>;
+    },
+    refetchInterval: 30000,
+  });
+  return data?.unreadCount ?? 0;
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
+  const unreadCount = useUnreadCount();
 
   return (
     <div className="flex h-screen bg-background">
@@ -25,8 +41,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <div className="flex-1 overflow-y-auto py-4">
           <nav className="space-y-1 px-3">
-            {navigation.map((item) => {
+            {baseNav.map((item) => {
               const isActive = location === item.href;
+              const badge = item.name === "Messages" && unreadCount > 0 ? unreadCount : null;
               return (
                 <Link
                   key={item.name}
@@ -45,7 +62,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     )}
                     aria-hidden="true"
                   />
-                  <span className="truncate">{item.name}</span>
+                  <span className="truncate flex-1">{item.name}</span>
+                  {badge && (
+                    <span className="ml-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                      {badge > 9 ? "9+" : badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}

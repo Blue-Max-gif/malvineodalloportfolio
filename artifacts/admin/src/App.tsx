@@ -13,6 +13,7 @@ import Education from "@/pages/Education";
 import Interests from "@/pages/Interests";
 import Goals from "@/pages/Goals";
 import Contact from "@/pages/Contact";
+import Messages from "@/pages/Messages";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,11 @@ function Router() {
       <Route path="/contact">
         <Layout>
           <Contact />
+        </Layout>
+      </Route>
+      <Route path="/messages">
+        <Layout>
+          <Messages />
         </Layout>
       </Route>
       <Route>

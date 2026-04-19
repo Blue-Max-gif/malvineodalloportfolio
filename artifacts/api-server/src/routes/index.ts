@@ -9,6 +9,7 @@ import goalsRouter from "./goals";
 import contactRouter from "./contact";
 import dashboardRouter from "./dashboard";
 import storageRouter from "./storage";
+import messagesRouter from "./messages";
 
 const router: IRouter = Router();
 
@@ -22,5 +23,6 @@ router.use(goalsRouter);
 router.use(contactRouter);
 router.use(dashboardRouter);
 router.use(storageRouter);
+router.use(messagesRouter);
 
 export default router;
