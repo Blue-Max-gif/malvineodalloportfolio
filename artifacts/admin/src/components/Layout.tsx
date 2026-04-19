@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox } from "lucide-react";
+import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 
@@ -12,6 +12,7 @@ const baseNav = [
   { name: "Education", href: "/education", icon: GraduationCap },
   { name: "Interests", href: "/interests", icon: Heart },
   { name: "Goals", href: "/goals", icon: Target },
+  { name: "Highlights", href: "/highlights", icon: Star },
   { name: "Contact", href: "/contact", icon: Contact },
   { name: "Messages", href: "/messages", icon: Inbox },
 ];

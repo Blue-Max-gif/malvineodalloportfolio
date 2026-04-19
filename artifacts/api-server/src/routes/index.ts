@@ -10,6 +10,7 @@ import contactRouter from "./contact";
 import dashboardRouter from "./dashboard";
 import storageRouter from "./storage";
 import messagesRouter from "./messages";
+import highlightsRouter from "./highlights";
 
 const router: IRouter = Router();
 
@@ -24,5 +25,6 @@ router.use(contactRouter);
 router.use(dashboardRouter);
 router.use(storageRouter);
 router.use(messagesRouter);
+router.use(highlightsRouter);
 
 export default router;

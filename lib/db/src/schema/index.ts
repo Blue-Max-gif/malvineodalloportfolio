@@ -109,6 +109,19 @@ export const insertContactSchema = createInsertSchema(contactTable).omit({
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contactTable.$inferSelect;
 
+export const highlightItemsTable = pgTable("highlight_items", {
+  id: serial("id").primaryKey(),
+  category: text("category").notNull(),
+  content: text("content").notNull(),
+  sortOrder: integer("sort_order").notNull().default(0),
+});
+
+export const insertHighlightItemSchema = createInsertSchema(highlightItemsTable).omit({
+  id: true,
+});
+export type InsertHighlightItem = z.infer<typeof insertHighlightItemSchema>;
+export type HighlightItem = typeof highlightItemsTable.$inferSelect;
+
 export const contactMessagesTable = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
