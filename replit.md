@@ -80,6 +80,27 @@ Full CRUD for every section:
 - `Profile.tsx` — edit basic info + upload photo/CV via presigned URL
 - `Skills.tsx`, `Experience.tsx`, `Education.tsx`, `Interests.tsx`, `Goals.tsx`, `Contact.tsx`
 
+## Email Notifications (Resend)
+
+The contact form saves all messages to the `contact_messages` DB table. Email delivery via Resend is optional — the route in `artifacts/api-server/src/routes/messages.ts` only sends an email if `process.env.RESEND_API_KEY` is set.
+
+**To enable email notifications:** The user dismissed the Replit Resend integration. To set it up later:
+1. Either connect via the Replit Resend integration (`connector:ccfg_resend_01K69QKYK789WN202XSE3QS17V`), or
+2. Provide a Resend API key directly — store it as a secret named `RESEND_API_KEY`.
+
+Without the key, the form still works and messages still appear in the admin inbox.
+
+## Messaging System
+
+Custom routes (not in OpenAPI spec, plain fetch in UI):
+- `POST /api/contact/message` — submit contact form (saves to DB + optionally emails)
+- `GET /api/contact/messages` — list all messages (admin inbox)
+- `GET /api/contact/messages/unread-count` — unread badge count
+- `PUT /api/contact/messages/:id/read` — mark message as read
+
+Admin inbox: `artifacts/admin/src/pages/Messages.tsx`
+Portfolio contact form with submit: `artifacts/portfolio/src/pages/Contact.tsx`
+
 ## Codegen Notes
 
 - After running `codegen`, manually verify `lib/api-zod/src/index.ts` only exports `export * from "./generated/api"` (orval may overwrite this file with extra exports that cause TS errors).
