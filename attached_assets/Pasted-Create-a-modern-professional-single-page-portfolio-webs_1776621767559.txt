@@ -1,0 +1,108 @@
+Create a modern, professional, single-page portfolio website for a student leader and aspiring forensic scientist.
+
+DESIGN STYLE:
+- Clean, modern UI with a professional look
+- Dark theme with blue accents and subtle gradients
+- Smooth scrolling and soft animations
+- Rounded cards, shadows, and hover effects
+- Fully responsive (mobile + desktop)
+- Use a bold heading font and clean body font (e.g., Poppins + Inter)
+
+LAYOUT STRUCTURE:
+
+1. HERO SECTION (Full screen)
+- Name: OCHIENG MALVINE ODALLO
+- Title: Student Forensic Scientist | Student Leader
+- Tagline: "Driving community impact through leadership, service, and innovation."
+- Buttons:
+  - View Portfolio
+  - Download CV (this should download the provided PDF file)
+- Include a professional profile image placeholder
+
+2. ABOUT SECTION
+- Include a short summary:
+"I am a passionate and results-driven student leader committed to community empowerment, youth development, and impactful leadership..."
+(Use the full personal profile but format it into clean readable paragraphs)
+
+- Highlight:
+  - CEO, Uplift Society
+  - Organizing Secretary, Nyakach University Students Association (NUSA)
+
+3. SKILLS SECTION (Grid layout with icons)
+- Graphic Design
+- ICT Skills
+- Certified First Aider
+- Leadership & Governance
+- Mentorship & Capacity Building
+
+4. LEADERSHIP & EXPERIENCE SECTION (Timeline style)
+- CEO, Uplift Society
+  - Leading community empowerment programs
+  - Strategic planning, team coordination, resource mobilization
+
+- Organizing Secretary, NUSA
+  - Event coordination
+  - Student engagement
+  - Leadership and communication
+
+5. EDUCATION SECTION
+- Kirinyaga University
+  - BSc Forensic Science (2024–2028, Ongoing)
+
+- Thurdibuoro Secondary School
+  - KCSE (2023) – Grade B
+
+- Faith Baptist Academy
+  - KCPE (2019) – 376 Marks
+
+- Certification:
+  - First Aid – St John Ambulance
+
+6. INTERESTS SECTION
+- Leadership & Governance
+- Mentorship & Capacity Building
+
+Display as stylish cards or icons
+
+7. FUTURE GOALS SECTION
+Display as bullet points or cards:
+- Become a transformative leader in community impact
+- Expand Uplift Society nationally
+- Advance studies in Forensic Science
+- Work in leadership, governance, and policy
+- Build strong professional networks
+- Advocate for youth and student empowerment
+- Improve strategic planning and project management skills
+- Mentor young leaders
+- Build a career based on integrity, service, and impact
+
+8. CONTACT SECTION
+- Phone: 0793672604 (SMS & WhatsApp)
+- Facebook: Odallo.Junior
+- Instagram: odallo_7
+- X (Twitter): odallo_jnr
+
+Include:
+- Contact form (Name, Email, Message)
+- Social media icons
+
+9. FOOTER
+- Name
+- "© 2026 All rights reserved"
+- Social links
+
+FUNCTIONAL REQUIREMENTS:
+- CV download button must link to and download the provided PDF file
+- Smooth scroll navigation
+- Sticky navbar
+- Hover animations on buttons and cards
+
+EXTRA FEATURES:
+- Add subtle fade-in animations on scroll
+- Add a scroll progress indicator
+- Include a "Back to Top" button
+- Optional dark/light mode toggle
+
+OUTPUT:
+- Provide full working code (HTML, CSS, and JavaScript OR React)
+- Ensure clean, well-structured, and commented code

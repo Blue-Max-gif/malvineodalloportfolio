@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "CYqwxUUgrNd3kO4c3e8F8"
+uri = "file://artifacts/portfolio/public/profile.png"
+type = "image"
+title = "Professional profile image of Kenyan man"
