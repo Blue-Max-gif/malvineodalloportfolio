@@ -13,6 +13,7 @@ import Experience from "@/pages/Experience";
 import Education from "@/pages/Education";
 import Interests from "@/pages/Interests";
 import Goals from "@/pages/Goals";
+import Highlights from "@/pages/Highlights";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
@@ -29,6 +30,7 @@ function Router() {
         <Route path="/education" component={Education} />
         <Route path="/interests" component={Interests} />
         <Route path="/goals" component={Goals} />
+        <Route path="/highlights" component={Highlights} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />
       </Switch>
