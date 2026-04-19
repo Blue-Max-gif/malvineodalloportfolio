@@ -8,11 +8,11 @@ export default function Home() {
   const { data: profile } = useGetProfile();
 
   const profilePhotoUrl = profile?.profilePhotoPath
-    ? `/api/storage/objects${profile.profilePhotoPath}`
+    ? `/api/storage${profile.profilePhotoPath}`
     : "/profile.png";
 
   const cvUrl = profile?.cvPath
-    ? `/api/storage/objects${profile.cvPath}`
+    ? `/api/storage${profile.cvPath}`
     : "/Ochieng_Malvine_Odallo_CV.pdf";
 
   return (
