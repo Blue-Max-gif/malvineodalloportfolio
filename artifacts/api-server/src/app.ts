@@ -29,6 +29,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Disable HTTP caching for all API routes so edits from the admin
+// dashboard are always visible immediately on the portfolio.
+app.disable("etag");
+app.use("/api", (_req, res, next) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+  next();
+});
+
 app.use("/api", router);
 
 export default app;

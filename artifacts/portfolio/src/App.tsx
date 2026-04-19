@@ -17,7 +17,15 @@ import Highlights from "@/pages/Highlights";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+    },
+  },
+});
 
 function Router() {
   return (

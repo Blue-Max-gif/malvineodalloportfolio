@@ -89,10 +89,11 @@ export default function Highlights() {
                   <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
                 </div>
                 <motion.ul
+                  key={sectionItems.join("|")}
                   variants={container}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: false, margin: "-60px" }}
                   className="flex flex-col gap-3"
                 >
                   {sectionItems.map((text) => (
