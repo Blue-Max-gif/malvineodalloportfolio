@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { SiFacebook, SiInstagram, SiX, SiWhatsapp } from "react-icons/si";
 import { Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useGetContact } from "@workspace/api-client-react";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -19,12 +20,13 @@ const contactSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
+  const { data: contact } = useGetContact();
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
 
-  function onSubmit(values: z.infer<typeof contactSchema>) {
+  function onSubmit() {
     toast({
       title: "Message Sent!",
       description: "Thanks for reaching out. I'll get back to you soon.",
@@ -36,9 +38,8 @@ export default function Contact() {
     <PageTransition>
       <div className="container mx-auto px-4 py-20 max-w-6xl">
         <h1 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">Get in Touch</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
@@ -48,44 +49,55 @@ export default function Contact() {
             </div>
 
             <div className="space-y-6">
-              <a href="tel:0793672604" className="flex items-center gap-4 text-lg hover:text-primary transition-colors">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Phone className="w-6 h-6" />
-                </div>
-                0793672604 (SMS & WhatsApp)
-              </a>
-              <a href="mailto:hello@example.com" className="flex items-center gap-4 text-lg hover:text-primary transition-colors">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Mail className="w-6 h-6" />
-                </div>
-                hello@example.com
-              </a>
+              {contact?.phone && (
+                <a href={`tel:${contact.phone}`} className="flex items-center gap-4 text-lg hover:text-primary transition-colors">
+                  <div className="p-3 rounded-full bg-primary/10 text-primary">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  {contact.phone} (SMS & WhatsApp)
+                </a>
+              )}
+              {contact?.email && (
+                <a href={`mailto:${contact.email}`} className="flex items-center gap-4 text-lg hover:text-primary transition-colors">
+                  <div className="p-3 rounded-full bg-primary/10 text-primary">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  {contact.email}
+                </a>
+              )}
             </div>
 
             <div className="pt-8">
               <h3 className="text-xl font-semibold mb-6">Social Profiles</h3>
               <div className="flex gap-4">
-                <a href="#" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
-                  <SiFacebook className="w-6 h-6" />
-                  <span className="sr-only">Facebook</span>
-                </a>
-                <a href="#" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
-                  <SiInstagram className="w-6 h-6" />
-                  <span className="sr-only">Instagram</span>
-                </a>
-                <a href="#" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
-                  <SiX className="w-6 h-6" />
-                  <span className="sr-only">X (Twitter)</span>
-                </a>
-                <a href="https://wa.me/254793672604" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
-                  <SiWhatsapp className="w-6 h-6" />
-                  <span className="sr-only">WhatsApp</span>
-                </a>
+                {contact?.facebook && (
+                  <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
+                    <SiFacebook className="w-6 h-6" />
+                    <span className="sr-only">Facebook</span>
+                  </a>
+                )}
+                {contact?.instagram && (
+                  <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
+                    <SiInstagram className="w-6 h-6" />
+                    <span className="sr-only">Instagram</span>
+                  </a>
+                )}
+                {contact?.twitter && (
+                  <a href={contact.twitter} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
+                    <SiX className="w-6 h-6" />
+                    <span className="sr-only">X (Twitter)</span>
+                  </a>
+                )}
+                {contact?.whatsapp && (
+                  <a href={`https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-card border hover:border-primary hover:text-primary transition-colors">
+                    <SiWhatsapp className="w-6 h-6" />
+                    <span className="sr-only">WhatsApp</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Form */}
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardHeader>
               <CardTitle>Send a Message</CardTitle>
@@ -126,10 +138,10 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="How can we work together?" 
-                            className="min-h-[150px] bg-background/50" 
-                            {...field} 
+                          <Textarea
+                            placeholder="How can we work together?"
+                            className="min-h-[150px] bg-background/50"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />

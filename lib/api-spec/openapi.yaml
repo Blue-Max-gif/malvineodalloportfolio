@@ -3,20 +3,38 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Portfolio API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: profile
+    description: Portfolio profile operations
+  - name: skills
+    description: Skills operations
+  - name: experience
+    description: Experience operations
+  - name: education
+    description: Education operations
+  - name: interests
+    description: Interests operations
+  - name: goals
+    description: Goals operations
+  - name: contact
+    description: Contact info operations
+  - name: storage
+    description: Object storage operations
+  - name: dashboard
+    description: Admin dashboard operations
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +42,474 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /profile:
+    get:
+      operationId: getProfile
+      tags: [profile]
+      summary: Get portfolio profile
+      responses:
+        "200":
+          description: Profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+    put:
+      operationId: updateProfile
+      tags: [profile]
+      summary: Update portfolio profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProfileBody"
+      responses:
+        "200":
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+
+  /skills:
+    get:
+      operationId: listSkills
+      tags: [skills]
+      summary: List all skills
+      responses:
+        "200":
+          description: List of skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+    post:
+      operationId: createSkill
+      tags: [skills]
+      summary: Create a skill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSkillBody"
+      responses:
+        "201":
+          description: Created skill
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+
+  /skills/{id}:
+    put:
+      operationId: updateSkill
+      tags: [skills]
+      summary: Update a skill
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSkillBody"
+      responses:
+        "200":
+          description: Updated skill
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteSkill
+      tags: [skills]
+      summary: Delete a skill
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /experience:
+    get:
+      operationId: listExperience
+      tags: [experience]
+      summary: List all experience entries
+      responses:
+        "200":
+          description: List of experience
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Experience"
+    post:
+      operationId: createExperience
+      tags: [experience]
+      summary: Create an experience entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateExperienceBody"
+      responses:
+        "201":
+          description: Created experience
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Experience"
+
+  /experience/{id}:
+    put:
+      operationId: updateExperience
+      tags: [experience]
+      summary: Update an experience entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateExperienceBody"
+      responses:
+        "200":
+          description: Updated experience
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Experience"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteExperience
+      tags: [experience]
+      summary: Delete an experience entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /education:
+    get:
+      operationId: listEducation
+      tags: [education]
+      summary: List all education entries
+      responses:
+        "200":
+          description: List of education
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Education"
+    post:
+      operationId: createEducation
+      tags: [education]
+      summary: Create an education entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEducationBody"
+      responses:
+        "201":
+          description: Created education
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Education"
+
+  /education/{id}:
+    put:
+      operationId: updateEducation
+      tags: [education]
+      summary: Update an education entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEducationBody"
+      responses:
+        "200":
+          description: Updated education
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Education"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteEducation
+      tags: [education]
+      summary: Delete an education entry
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /interests:
+    get:
+      operationId: listInterests
+      tags: [interests]
+      summary: List all interests
+      responses:
+        "200":
+          description: List of interests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Interest"
+    post:
+      operationId: createInterest
+      tags: [interests]
+      summary: Create an interest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInterestBody"
+      responses:
+        "201":
+          description: Created interest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Interest"
+
+  /interests/{id}:
+    put:
+      operationId: updateInterest
+      tags: [interests]
+      summary: Update an interest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateInterestBody"
+      responses:
+        "200":
+          description: Updated interest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Interest"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteInterest
+      tags: [interests]
+      summary: Delete an interest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /goals:
+    get:
+      operationId: listGoals
+      tags: [goals]
+      summary: List all goals
+      responses:
+        "200":
+          description: List of goals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Goal"
+    post:
+      operationId: createGoal
+      tags: [goals]
+      summary: Create a goal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGoalBody"
+      responses:
+        "201":
+          description: Created goal
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Goal"
+
+  /goals/{id}:
+    put:
+      operationId: updateGoal
+      tags: [goals]
+      summary: Update a goal
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGoalBody"
+      responses:
+        "200":
+          description: Updated goal
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Goal"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteGoal
+      tags: [goals]
+      summary: Delete a goal
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /contact:
+    get:
+      operationId: getContact
+      tags: [contact]
+      summary: Get contact info
+      responses:
+        "200":
+          description: Contact info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+    put:
+      operationId: updateContact
+      tags: [contact]
+      summary: Update contact info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateContactBody"
+      responses:
+        "200":
+          description: Updated contact info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+
+  /dashboard/stats:
+    get:
+      operationId: getDashboardStats
+      tags: [dashboard]
+      summary: Get dashboard stats
+      responses:
+        "200":
+          description: Dashboard stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardStats"
+
+  /storage/uploads/request-url:
+    post:
+      operationId: requestUploadUrl
+      tags: [storage]
+      summary: Request a presigned upload URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestUploadUrlBody"
+      responses:
+        "200":
+          description: Upload URL
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestUploadUrlResponse"
+
+  /storage/objects/{objectPath}:
+    get:
+      operationId: getStorageObject
+      tags: [storage]
+      summary: Serve a stored object
+      parameters:
+        - name: objectPath
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Object content
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +520,355 @@ components:
       required:
         - status
 
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        tagline:
+          type: string
+        aboutText:
+          type: string
+        profilePhotoPath:
+          type: ["string", "null"]
+        cvPath:
+          type: ["string", "null"]
+        updatedAt:
+          type: string
+      required:
+        - id
+        - name
+        - title
+        - tagline
+        - aboutText
+        - profilePhotoPath
+        - cvPath
+        - updatedAt
+
+    UpdateProfileBody:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        tagline:
+          type: string
+        aboutText:
+          type: string
+        profilePhotoPath:
+          type: ["string", "null"]
+        cvPath:
+          type: ["string", "null"]
+
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - id
+        - name
+        - icon
+        - sortOrder
+
+    CreateSkillBody:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - name
+        - icon
+
+    UpdateSkillBody:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+
+    Experience:
+      type: object
+      properties:
+        id:
+          type: integer
+        role:
+          type: string
+        organization:
+          type: string
+        bullets:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - id
+        - role
+        - organization
+        - bullets
+        - sortOrder
+
+    CreateExperienceBody:
+      type: object
+      properties:
+        role:
+          type: string
+        organization:
+          type: string
+        bullets:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - role
+        - organization
+        - bullets
+
+    UpdateExperienceBody:
+      type: object
+      properties:
+        role:
+          type: string
+        organization:
+          type: string
+        bullets:
+          type: string
+        sortOrder:
+          type: integer
+
+    Education:
+      type: object
+      properties:
+        id:
+          type: integer
+        institution:
+          type: string
+        degree:
+          type: string
+        year:
+          type: string
+        grade:
+          type: ["string", "null"]
+        sortOrder:
+          type: integer
+      required:
+        - id
+        - institution
+        - degree
+        - year
+        - grade
+        - sortOrder
+
+    CreateEducationBody:
+      type: object
+      properties:
+        institution:
+          type: string
+        degree:
+          type: string
+        year:
+          type: string
+        grade:
+          type: ["string", "null"]
+        sortOrder:
+          type: integer
+      required:
+        - institution
+        - degree
+        - year
+
+    UpdateEducationBody:
+      type: object
+      properties:
+        institution:
+          type: string
+        degree:
+          type: string
+        year:
+          type: string
+        grade:
+          type: ["string", "null"]
+        sortOrder:
+          type: integer
+
+    Interest:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - id
+        - name
+        - icon
+        - sortOrder
+
+    CreateInterestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - name
+        - icon
+
+    UpdateInterestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        sortOrder:
+          type: integer
+
+    Goal:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - id
+        - content
+        - sortOrder
+
+    CreateGoalBody:
+      type: object
+      properties:
+        content:
+          type: string
+        sortOrder:
+          type: integer
+      required:
+        - content
+
+    UpdateGoalBody:
+      type: object
+      properties:
+        content:
+          type: string
+        sortOrder:
+          type: integer
+
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+        phone:
+          type: ["string", "null"]
+        email:
+          type: ["string", "null"]
+        facebook:
+          type: ["string", "null"]
+        instagram:
+          type: ["string", "null"]
+        twitter:
+          type: ["string", "null"]
+        whatsapp:
+          type: ["string", "null"]
+      required:
+        - id
+        - phone
+        - email
+        - facebook
+        - instagram
+        - twitter
+        - whatsapp
+
+    UpdateContactBody:
+      type: object
+      properties:
+        phone:
+          type: ["string", "null"]
+        email:
+          type: ["string", "null"]
+        facebook:
+          type: ["string", "null"]
+        instagram:
+          type: ["string", "null"]
+        twitter:
+          type: ["string", "null"]
+        whatsapp:
+          type: ["string", "null"]
+
+    DashboardStats:
+      type: object
+      properties:
+        skillsCount:
+          type: integer
+        experienceCount:
+          type: integer
+        educationCount:
+          type: integer
+        interestsCount:
+          type: integer
+        goalsCount:
+          type: integer
+        hasProfilePhoto:
+          type: boolean
+        hasCv:
+          type: boolean
+      required:
+        - skillsCount
+        - experienceCount
+        - educationCount
+        - interestsCount
+        - goalsCount
+        - hasProfilePhoto
+        - hasCv
+
+    RequestUploadUrlBody:
+      type: object
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        contentType:
+          type: string
+      required:
+        - name
+        - size
+        - contentType
+
+    RequestUploadUrlResponse:
+      type: object
+      properties:
+        uploadURL:
+          type: string
+        objectPath:
+          type: string
+      required:
+        - uploadURL
+        - objectPath
