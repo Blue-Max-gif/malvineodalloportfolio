@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { SaveButton } from "@/components/SaveButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus, Pencil, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -141,10 +142,20 @@ export default function Experience() {
             Manage your work history and professional experience.
           </p>
         </div>
-        <Button onClick={() => handleOpenDialog()} data-testid="button-add-experience">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Experience
-        </Button>
+        <div className="flex items-center gap-2">
+          <SaveButton
+            isPending={createExperience.isPending || updateExperience.isPending || deleteExperience.isPending}
+            isSaved={createExperience.isSuccess || updateExperience.isSuccess || deleteExperience.isSuccess}
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: getListExperienceQueryKey() });
+              toast({ title: "✓ Changes saved", description: "All experience entries are up to date." });
+            }}
+          />
+          <Button onClick={() => handleOpenDialog()} data-testid="button-add-experience">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Experience
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-4">

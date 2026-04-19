@@ -67,6 +67,14 @@ router.get("/contact/messages/unread-count", async (_req: Request, res: Response
   res.json({ unreadCount: unread, totalCount: rows.length });
 });
 
+router.delete("/contact/messages/read", async (_req: Request, res: Response) => {
+  const deleted = await db
+    .delete(contactMessagesTable)
+    .where(eq(contactMessagesTable.isRead, 1))
+    .returning();
+  res.json({ cleared: deleted.length });
+});
+
 router.put("/contact/messages/:id/read", async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   const updated = await db

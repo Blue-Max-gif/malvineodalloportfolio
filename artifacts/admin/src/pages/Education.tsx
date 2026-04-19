@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { SaveButton } from "@/components/SaveButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus, Pencil, Trash2, GraduationCap } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -144,10 +145,20 @@ export default function Education() {
             Manage your academic background and qualifications.
           </p>
         </div>
-        <Button onClick={() => handleOpenDialog()} data-testid="button-add-education">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Education
-        </Button>
+        <div className="flex items-center gap-2">
+          <SaveButton
+            isPending={createEducation.isPending || updateEducation.isPending || deleteEducation.isPending}
+            isSaved={createEducation.isSuccess || updateEducation.isSuccess || deleteEducation.isSuccess}
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: getListEducationQueryKey() });
+              toast({ title: "✓ Changes saved", description: "All education entries are up to date." });
+            }}
+          />
+          <Button onClick={() => handleOpenDialog()} data-testid="button-add-education">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Education
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">

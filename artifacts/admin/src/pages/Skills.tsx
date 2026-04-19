@@ -11,6 +11,7 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus, Pencil, Trash2 } from "lucide-react";
+import { SaveButton } from "@/components/SaveButton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
@@ -136,10 +137,20 @@ export default function Skills() {
             Manage the skills displayed on your portfolio.
           </p>
         </div>
-        <Button onClick={() => handleOpenDialog()} data-testid="button-add-skill">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Skill
-        </Button>
+        <div className="flex items-center gap-2">
+          <SaveButton
+            isPending={createSkill.isPending || updateSkill.isPending || deleteSkill.isPending}
+            isSaved={createSkill.isSuccess || updateSkill.isSuccess || deleteSkill.isSuccess}
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: getListSkillsQueryKey() });
+              toast({ title: "✓ Changes saved", description: "All skills are up to date." });
+            }}
+          />
+          <Button onClick={() => handleOpenDialog()} data-testid="button-add-skill">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Skill
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

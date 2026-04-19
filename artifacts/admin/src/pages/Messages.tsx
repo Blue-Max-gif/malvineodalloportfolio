@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Mail, MailOpen, Inbox } from "lucide-react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Mail, MailOpen, Inbox, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: number;
@@ -34,12 +36,14 @@ function formatDate(iso: string) {
 
 export default function Messages() {
   const queryClient = useQueryClient();
+  const { toast } = useToast();
   const { data: messages = [], isLoading } = useQuery({
     queryKey: ["contact-messages"],
     queryFn: fetchMessages,
   });
 
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [clearDialogOpen, setClearDialogOpen] = useState(false);
 
   const handleExpand = async (msg: Message) => {
     if (expanded === msg.id) {
@@ -50,25 +54,59 @@ export default function Messages() {
     if (!msg.isRead) {
       await markAsRead(msg.id);
       queryClient.invalidateQueries({ queryKey: ["contact-messages"] });
+      queryClient.invalidateQueries({ queryKey: ["unread-count"] });
     }
   };
 
+  const clearReadMutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch("/api/contact/messages/read", { method: "DELETE" });
+      if (!res.ok) throw new Error("Failed");
+      return res.json() as Promise<{ cleared: number }>;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["contact-messages"] });
+      queryClient.invalidateQueries({ queryKey: ["unread-count"] });
+      setClearDialogOpen(false);
+      toast({
+        title: "Messages cleared",
+        description: `${data.cleared} read message${data.cleared !== 1 ? "s" : ""} removed.`,
+      });
+    },
+    onError: () => toast({ title: "Error", description: "Could not clear messages.", variant: "destructive" }),
+  });
+
   const unreadCount = messages.filter((m) => !m.isRead).length;
+  const readCount = messages.filter((m) => m.isRead).length;
 
   return (
-    <div className="p-8">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="space-y-6 max-w-4xl mx-auto">
+      <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Inbox</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Inbox</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Messages from your portfolio contact form
           </p>
         </div>
-        {unreadCount > 0 && (
-          <Badge variant="default" className="text-sm px-3 py-1">
-            {unreadCount} unread
-          </Badge>
-        )}
+        <div className="flex items-center gap-2">
+          {unreadCount > 0 && (
+            <Badge variant="default" className="text-sm px-3 py-1">
+              {unreadCount} unread
+            </Badge>
+          )}
+          {readCount > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-destructive border-destructive/30 hover:bg-destructive/10 hover:text-destructive"
+              onClick={() => setClearDialogOpen(true)}
+              disabled={clearReadMutation.isPending}
+            >
+              <Trash2 className="h-4 w-4 mr-1.5" />
+              Clear Read ({readCount})
+            </Button>
+          )}
+        </div>
       </div>
 
       {isLoading ? (
@@ -139,6 +177,26 @@ export default function Messages() {
           ))}
         </div>
       )}
+
+      <AlertDialog open={clearDialogOpen} onOpenChange={setClearDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Clear read messages?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently delete all {readCount} read message{readCount !== 1 ? "s" : ""}. Unread messages will not be affected. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => clearReadMutation.mutate()}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Clear {readCount} message{readCount !== 1 ? "s" : ""}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

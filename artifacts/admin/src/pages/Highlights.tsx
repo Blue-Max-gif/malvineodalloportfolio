@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Plus, Pencil, Trash2, Zap, Heart, Trophy } from "lucide-react";
+import { SaveButton } from "@/components/SaveButton";
 
 const CATEGORIES = [
   { value: "strengths", label: "Key Strengths", icon: Zap, color: "text-blue-500" },
@@ -149,11 +150,21 @@ export default function Highlights() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Highlights</h1>
-        <p className="text-muted-foreground mt-2">
-          Manage your key strengths, hobbies, and additional achievements.
-        </p>
+      <div className="flex justify-between items-end">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Highlights</h1>
+          <p className="text-muted-foreground mt-2">
+            Manage your key strengths, hobbies, and additional achievements.
+          </p>
+        </div>
+        <SaveButton
+          isPending={deleteMutation.isPending}
+          isSaved={deleteMutation.isSuccess}
+          onClick={() => {
+            queryClient.invalidateQueries({ queryKey: ["highlights"] });
+            toast({ title: "✓ Changes saved", description: "All highlights are up to date." });
+          }}
+        />
       </div>
 
       {isLoading ? (

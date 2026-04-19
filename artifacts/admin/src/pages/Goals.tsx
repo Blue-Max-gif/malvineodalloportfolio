@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { SaveButton } from "@/components/SaveButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus, Pencil, Trash2, CheckCircle2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -133,10 +134,20 @@ export default function Goals() {
             Manage your professional goals and objectives.
           </p>
         </div>
-        <Button onClick={() => handleOpenDialog()} data-testid="button-add-goal">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Goal
-        </Button>
+        <div className="flex items-center gap-2">
+          <SaveButton
+            isPending={createGoal.isPending || updateGoal.isPending || deleteGoal.isPending}
+            isSaved={createGoal.isSuccess || updateGoal.isSuccess || deleteGoal.isSuccess}
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: getListGoalsQueryKey() });
+              toast({ title: "✓ Changes saved", description: "All goals are up to date." });
+            }}
+          />
+          <Button onClick={() => handleOpenDialog()} data-testid="button-add-goal">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Goal
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-3">

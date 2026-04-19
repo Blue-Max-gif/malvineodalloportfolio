@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { SaveButton } from "@/components/SaveButton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus, Pencil, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -136,10 +137,20 @@ export default function Interests() {
             Manage your personal interests and hobbies.
           </p>
         </div>
-        <Button onClick={() => handleOpenDialog()} data-testid="button-add-interest">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Interest
-        </Button>
+        <div className="flex items-center gap-2">
+          <SaveButton
+            isPending={createInterest.isPending || updateInterest.isPending || deleteInterest.isPending}
+            isSaved={createInterest.isSuccess || updateInterest.isSuccess || deleteInterest.isSuccess}
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: getListInterestsQueryKey() });
+              toast({ title: "✓ Changes saved", description: "All interests are up to date." });
+            }}
+          />
+          <Button onClick={() => handleOpenDialog()} data-testid="button-add-interest">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Interest
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
