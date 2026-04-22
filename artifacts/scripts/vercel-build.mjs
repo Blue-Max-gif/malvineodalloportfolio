@@ -48,6 +48,10 @@ run("pnpm --filter @workspace/admin run build", { BASE_PATH: "/admin/" });
 mkdirSync(path.join(distDir, "admin"), { recursive: true });
 cpSync(path.join(repoRoot, "artifacts/admin/dist/public"), path.join(distDir, "admin"), { recursive: true });
 
+// Build api-server → produces dist/vercel-app.mjs for the serverless function
+console.log("\n=== Building api-server ===");
+run("pnpm --filter @workspace/api-server run build");
+
 console.log("\n=== Done ===");
 console.log("dist/        → portfolio");
 console.log("dist/admin/  → admin dashboard");

@@ -4,7 +4,7 @@
   "outputDirectory": "dist",
   "framework": null,
   "functions": {
-    "api/handler.ts": {
+    "api/handler.mjs": {
       "maxDuration": 30
     }
   },
