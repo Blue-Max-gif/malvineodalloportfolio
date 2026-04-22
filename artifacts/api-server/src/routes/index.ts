@@ -11,6 +11,7 @@ import dashboardRouter from "./dashboard";
 import storageRouter from "./storage";
 import messagesRouter from "./messages";
 import highlightsRouter from "./highlights";
+import adminAuthRouter from "./adminAuth";
 
 const router: IRouter = Router();
 
@@ -26,5 +27,6 @@ router.use(dashboardRouter);
 router.use(storageRouter);
 router.use(messagesRouter);
 router.use(highlightsRouter);
+router.use(adminAuthRouter);
 
 export default router;

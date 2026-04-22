@@ -16,6 +16,7 @@ import Goals from "@/pages/Goals";
 import Highlights from "@/pages/Highlights";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import AdminLoginOverlay from "@/components/AdminLoginOverlay";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +58,7 @@ function App() {
             </Layout>
           </WouterRouter>
           <Toaster />
+          <AdminLoginOverlay />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>

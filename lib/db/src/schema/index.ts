@@ -122,6 +122,11 @@ export const insertHighlightItemSchema = createInsertSchema(highlightItemsTable)
 export type InsertHighlightItem = z.infer<typeof insertHighlightItemSchema>;
 export type HighlightItem = typeof highlightItemsTable.$inferSelect;
 
+export const siteSettingsTable = pgTable("site_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+});
+
 export const contactMessagesTable = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),

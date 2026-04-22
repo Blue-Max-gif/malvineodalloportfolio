@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox, Star } from "lucide-react";
+import { LayoutDashboard, User, Wrench, Briefcase, GraduationCap, Heart, Target, Contact, Inbox, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,6 +15,7 @@ const baseNav = [
   { name: "Highlights", href: "/highlights", icon: Star },
   { name: "Contact", href: "/contact", icon: Contact },
   { name: "Messages", href: "/messages", icon: Inbox },
+  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
 function useUnreadCount() {

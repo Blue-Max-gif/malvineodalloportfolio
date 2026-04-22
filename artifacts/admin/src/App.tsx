@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
 import Layout from "@/components/Layout";
+import AuthGuard from "@/components/AuthGuard";
 import Home from "@/pages/Home";
 import Profile from "@/pages/Profile";
 import Skills from "@/pages/Skills";
@@ -15,6 +16,7 @@ import Goals from "@/pages/Goals";
 import Contact from "@/pages/Contact";
 import Highlights from "@/pages/Highlights";
 import Messages from "@/pages/Messages";
+import Settings from "@/pages/Settings";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -79,6 +81,11 @@ function Router() {
           <Messages />
         </Layout>
       </Route>
+      <Route path="/settings">
+        <Layout>
+          <Settings />
+        </Layout>
+      </Route>
       <Route>
         <Layout>
           <NotFound />
@@ -92,10 +99,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
+        <AuthGuard>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </AuthGuard>
       </TooltipProvider>
     </QueryClientProvider>
   );
