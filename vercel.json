@@ -5,8 +5,7 @@
   "framework": null,
   "functions": {
     "api/handler.ts": {
-      "maxDuration": 30,
-      "externalPackages": ["pino", "pino-http", "pino-pretty", "@google-cloud/storage"]
+      "maxDuration": 30
     }
   },
   "rewrites": [
