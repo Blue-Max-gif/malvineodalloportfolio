@@ -1,0 +1,199 @@
+54:14.27
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:54:10.74
+POST
+500
+malvineodalloportfolio.vercel.app
+/api/admin/verify
+Error: Failed query: select "key", "value" from "site_settings" where "site_settings"."key" = $1 params: admin_key at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async getAdminKey (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:65907:16) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:65913:20
+Apr 22 12:54:09.48
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:54:06.76
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:54:05.06
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:54:04.17
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:59.36
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:56.65
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:54.92
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:48.33
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/goals
+Error: Failed query: select "id", "content", "sort_order" from "goals" order by "goals"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60420:16
+Apr 22 12:53:43.62
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/goals
+Error: Failed query: select "id", "content", "sort_order" from "goals" order by "goals"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60420:16
+Apr 22 12:53:40.91
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/goals
+Error: Failed query: select "id", "content", "sort_order" from "goals" order by "goals"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60420:16
+Apr 22 12:53:39.16
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/goals
+Error: Failed query: select "id", "content", "sort_order" from "goals" order by "goals"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60420:16
+Apr 22 12:53:37.49
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/interests
+Error: Failed query: select "id", "name", "icon", "sort_order" from "interests" order by "interests"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60390:16
+Apr 22 12:53:35.59
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:33.85
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:53:33.42
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/education
+Error: Failed query: select "id", "institution", "degree", "year", "grade", "sort_order" from "education" order by "education"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60360:16
+Apr 22 12:53:31.71
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/education
+Error: Failed query: select "id", "institution", "degree", "year", "grade", "sort_order" from "education" order by "education"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60360:16
+Apr 22 12:53:29.65
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/experience
+Error: Failed query: select "id", "role", "organization", "bullets", "sort_order" from "experience" order by "experience"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60330:16
+Apr 22 12:53:27.94
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/experience
+Error: Failed query: select "id", "role", "organization", "bullets", "sort_order" from "experience" order by "experience"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60330:16
+Apr 22 12:53:27.81
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/skills
+Error: Failed query: select "id", "name", "icon", "sort_order" from "skills" order by "skills"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60300:16
+Apr 22 12:53:25.99
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/skills
+Error: Failed query: select "id", "name", "icon", "sort_order" from "skills" order by "skills"."sort_order" asc params: at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60300:16
+Apr 22 12:52:37.77
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:32.99
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:29.86
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:28.10
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:26.39
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:23.66
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:52:21.60
+GET
+500
+malvineodalloportfolio.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:51:08.51
+GET
+500
+malvineodalloportfolio-gre2jatsf-william-s-projects-a94fd8b5.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:51:07.64
+GET
+500
+malvineodalloportfolio-gre2jatsf-william-s-projects-a94fd8b5.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:51:06.06
+GET
+500
+malvineodalloportfolio-gre2jatsf-william-s-projects-a94fd8b5.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+Apr 22 12:51:05.94
+GET
+500
+malvineodalloportfolio-gre2jatsf-william-s-projects-a94fd8b5.vercel.app
+/api/profile
+Error: Failed query: select "id", "name", "title", "tagline", "about_text", "profile_photo_path", "cv_path", "updated_at" from "profile" limit $1 params: 1 at NodePgPreparedQuery.queryWithCache (file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48323:15) at process.processTicksAndRejections (node:internal/process/task_queues:104:5) at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:48556:22 at async file:///var/task/artifacts/api-server/dist/vercel-app.mjs:60260:14
+No more logs to show within selected timeline
