@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useGetProfile, useUpdateProfile, useRequestUploadUrl, getGetProfileQueryKey } from "@workspace/api-client-react";
+import { useGetProfile, useUpdateProfile, getGetProfileQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -27,7 +27,6 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 export default function Profile() {
   const { data: profile, isLoading } = useGetProfile();
   const updateProfile = useUpdateProfile();
-  const requestUploadUrl = useRequestUploadUrl();
   const queryClient = useQueryClient();
   const { toast } = useToast();
   
@@ -73,45 +72,30 @@ export default function Profile() {
     else setIsUploadingCv(true);
 
     try {
-      // 1. Get upload URL
-      const { uploadURL, objectPath } = await requestUploadUrl.mutateAsync({
-        data: {
-          name: file.name,
-          size: file.size,
-          contentType: file.type,
-        }
-      });
-
-      // 2. PUT file
-      const res = await fetch(uploadURL, {
-        method: "PUT",
+      // Upload file directly to the API — server stores it in Supabase and returns the CDN URL
+      const res = await fetch("/api/storage/upload", {
+        method: "POST",
+        headers: { "Content-Type": file.type },
         body: file,
-        headers: {
-          "Content-Type": file.type,
-        },
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to upload file");
-      }
+      if (!res.ok) throw new Error("Upload failed");
 
-      // 3. Update form and auto-save
+      const { url } = await res.json() as { url: string };
+
+      // Save the CDN URL to the profile
       if (type === "photo") {
-        form.setValue("profilePhotoPath", objectPath);
-        await updateProfile.mutateAsync({
-          data: { profilePhotoPath: objectPath }
-        });
+        form.setValue("profilePhotoPath", url);
+        await updateProfile.mutateAsync({ data: { profilePhotoPath: url } });
       } else {
-        form.setValue("cvPath", objectPath);
-        await updateProfile.mutateAsync({
-          data: { cvPath: objectPath }
-        });
+        form.setValue("cvPath", url);
+        await updateProfile.mutateAsync({ data: { cvPath: url } });
       }
 
       queryClient.invalidateQueries({ queryKey: getGetProfileQueryKey() });
       toast({
         title: "Upload complete",
-        description: `${type === "photo" ? "Profile photo" : "CV"} has been uploaded successfully.`,
+        description: `${type === "photo" ? "Profile photo" : "CV"} uploaded successfully.`,
       });
     } catch (error) {
       toast({
@@ -122,7 +106,6 @@ export default function Profile() {
     } finally {
       if (type === "photo") setIsUploadingPhoto(false);
       else setIsUploadingCv(false);
-      // Reset input
       if (e.target) e.target.value = "";
     }
   };

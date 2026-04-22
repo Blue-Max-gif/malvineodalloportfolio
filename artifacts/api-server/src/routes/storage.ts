@@ -1,42 +1,41 @@
 import { Router, type IRouter, type Request, type Response } from "express";
 import { Readable } from "stream";
-import {
-  RequestUploadUrlBody,
-  RequestUploadUrlResponse,
-} from "@workspace/api-zod";
-import { createSignedUploadUrl } from "../lib/supabaseStorage";
+import express from "express";
+import { uploadFile } from "../lib/supabaseStorage";
 import { ObjectStorageService, ObjectNotFoundError } from "../lib/objectStorage";
 
 const router: IRouter = Router();
 
 /**
- * POST /storage/uploads/request-url
+ * POST /storage/upload
  *
- * Request a presigned URL for direct file upload to Supabase Storage.
- * The client uploads the file directly to the returned URL (PUT),
- * then saves the returned publicUrl to the profile.
+ * Upload a file to Supabase Storage.
+ * Send the raw file bytes as the request body with the correct Content-Type header.
+ * Returns { url } — the public CDN URL for the uploaded file.
  */
-router.post("/storage/uploads/request-url", async (req: Request, res: Response) => {
-  const parsed = RequestUploadUrlBody.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: "Missing or invalid required fields" });
-    return;
-  }
+router.post(
+  "/storage/upload",
+  express.raw({ type: "*/*", limit: "10mb" }),
+  async (req: Request, res: Response) => {
+    const contentType = (req.headers["content-type"] || "application/octet-stream")
+      .split(";")[0]
+      .trim();
+    const buffer = req.body as Buffer;
 
-  try {
-    const { uploadURL, publicUrl } = await createSignedUploadUrl();
+    if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
+      res.status(400).json({ error: "No file data received" });
+      return;
+    }
 
-    res.json(
-      RequestUploadUrlResponse.parse({
-        uploadURL,
-        objectPath: publicUrl,
-      }),
-    );
-  } catch (error) {
-    req.log.error({ err: error }, "Error generating upload URL");
-    res.status(500).json({ error: "Failed to generate upload URL" });
+    try {
+      const url = await uploadFile(buffer, contentType);
+      res.json({ url });
+    } catch (error) {
+      console.error("File upload failed:", error);
+      res.status(500).json({ error: "Upload failed" });
+    }
   }
-});
+);
 
 /**
  * GET /storage/objects/* and /storage/public-objects/*
