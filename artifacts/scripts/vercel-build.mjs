@@ -12,12 +12,12 @@ console.log("Node:", process.version);
 console.log("CWD:", process.cwd());
 console.log("Repo root:", repoRoot);
 
-const run = (cmd, env = {}) => {
+const run = (cmd, env = {}, cwd = repoRoot) => {
   console.log(`\n$ ${cmd}`);
   try {
     execSync(cmd, {
       stdio: "inherit",
-      cwd: repoRoot,
+      cwd,
       env: { ...process.env, ...env },
     });
   } catch {
@@ -32,8 +32,9 @@ console.log("\n=== Installing dependencies ===");
 run("pnpm install");
 
 // Set up Supabase Storage bucket + policies (idempotent, safe to re-run)
+// Run from lib/db so that the `pg` package is resolvable
 console.log("\n=== Setting up Supabase storage ===");
-run("node artifacts/scripts/setup-supabase-storage.mjs");
+run("node ../../artifacts/scripts/setup-supabase-storage.mjs", {}, path.join(repoRoot, "lib/db"));
 
 // Output goes to artifacts/dist/ (Vercel's outputDirectory is relative to Root Directory)
 const distDir = path.join(artifactsDir, "dist");
