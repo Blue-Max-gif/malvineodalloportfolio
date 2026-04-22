@@ -301,7 +301,7 @@ export default function Profile() {
                 <div className="h-32 w-32 rounded-full border-2 border-border overflow-hidden bg-muted flex items-center justify-center relative">
                   {currentPhotoPath ? (
                     <img 
-                      src={`/api/storage${currentPhotoPath}`} 
+                      src={currentPhotoPath.startsWith("http") ? currentPhotoPath : `/api/storage${currentPhotoPath}`} 
                       alt="Profile" 
                       className="h-full w-full object-cover"
                     />
