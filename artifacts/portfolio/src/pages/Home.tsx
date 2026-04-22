@@ -9,7 +9,7 @@ export default function Home() {
 
   const profilePhotoUrl = profile?.profilePhotoPath
     ? (profile.profilePhotoPath.startsWith("http") ? profile.profilePhotoPath : `/api/storage${profile.profilePhotoPath}`)
-    : "/profile.png";
+    : null;
 
   const cvUrl = profile?.cvPath
     ? (profile.cvPath.startsWith("http") ? profile.cvPath : `/api/storage${profile.cvPath}`)
@@ -28,9 +28,11 @@ export default function Home() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-background shadow-2xl shadow-primary/20 relative"
+            className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-background shadow-2xl shadow-primary/20 relative bg-muted"
           >
-            <img src={profilePhotoUrl} alt={profile?.name ?? "Ochieng Malvine Odallo"} className="w-full h-full object-cover" />
+            {profilePhotoUrl && (
+              <img src={profilePhotoUrl} alt={profile?.name ?? "Ochieng Malvine Odallo"} className="w-full h-full object-cover" />
+            )}
           </motion.div>
 
           <div className="space-y-4">
