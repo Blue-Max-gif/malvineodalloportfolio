@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm install --frozen-lockfile && node scripts/vercel-build.mjs",
+  "outputDirectory": "dist",
+  "framework": null,
+  "functions": {
+    "api/handler.ts": {
+      "maxDuration": 30,
+      "externalPackages": ["pino", "pino-http", "pino-pretty", "@google-cloud/storage"]
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/handler" },
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/admin/:path*", "destination": "/admin/index.html" },
+    { "source": "/:path*", "destination": "/index.html" }
+  ]
+}
