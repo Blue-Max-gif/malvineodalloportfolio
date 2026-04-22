@@ -26,6 +26,11 @@ const run = (cmd, env = {}) => {
   }
 };
 
+// Install all workspace dependencies from repo root
+// (Vercel's auto-install runs from artifacts/ so it misses the pnpm workspace)
+console.log("\n=== Installing dependencies ===");
+run("pnpm install");
+
 // Output goes to artifacts/dist/ (Vercel's outputDirectory is relative to Root Directory)
 const distDir = path.join(artifactsDir, "dist");
 
