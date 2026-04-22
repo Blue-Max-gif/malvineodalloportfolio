@@ -31,11 +31,6 @@ const run = (cmd, env = {}, cwd = repoRoot) => {
 console.log("\n=== Installing dependencies ===");
 run("pnpm install");
 
-// Set up Supabase Storage bucket + policies (idempotent, safe to re-run)
-// Run from lib/db so that the `pg` package is resolvable
-console.log("\n=== Setting up Supabase storage ===");
-run("node ../../artifacts/scripts/setup-supabase-storage.mjs", {}, path.join(repoRoot, "lib/db"));
-
 // Output goes to artifacts/dist/ (Vercel's outputDirectory is relative to Root Directory)
 const distDir = path.join(artifactsDir, "dist");
 
